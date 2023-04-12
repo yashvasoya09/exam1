@@ -1,5 +1,6 @@
 import'package:flutter/material.dart';
 
+import 'Home/FINAL.dart';
 import 'Home/homeScreen.dart';
 void main()
 {
@@ -8,6 +9,7 @@ void main()
       debugShowCheckedModeBanner: false,
       routes: {
         '/':(context) => homeScreen(),
+        'final':(context) => finalScreen(),
       },
     ),
   );

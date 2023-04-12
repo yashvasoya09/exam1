@@ -1,53 +1,46 @@
 import 'package:exam1/Home/DATA%20MODEL.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:gradient_textfield/gradient_textfield.dart';
 
-class homeScreen extends StatefulWidget {
-  const homeScreen({Key? key}) : super(key: key);
+class finalScreen extends StatefulWidget {
+  const finalScreen({Key? key}) : super(key: key);
 
   @override
-  State<homeScreen> createState() => _homeScreenState();
+  State<finalScreen> createState() => _finalScreenState();
 }
 
-class _homeScreenState extends State<homeScreen> {
-  TextEditingController txtno = TextEditingController();
-  Model m1 = Model();
+class _finalScreenState extends State<finalScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.black26,
-      body: Center(
-        child: Column(
-          children: [
-            GradientAppBar(txtno.text),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Gradienttextfield(
-                controller: txtno,
-                radius: 40,
-                height: 60,
-                width: 400,
-                colors: [Colors.pink, Colors.red, Colors.orange],
-                text: "Enter No.",
-                fontColor: Colors.black,
-                fontSize: 25,
+    Model m1 = ModalRoute.of(context)!.settings.arguments as Model;
+    return Scaffold(
+      body: Column(
+        children: [
+          GradientAppBar("1"),
+          SizedBox(height: 20),
+          Container(height: 500,width: 300,child: Center(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(("${m1.a}")),
+                  Expanded(
+                    child: ListView.builder(itemBuilder: (context, index) {
+                      return Text('${m1.a} * $index=${m1.a! * index}');
+                    },itemCount: 10+2-1,),
+                  )
+                ],
               ),
             ),
-            SizedBox(height: 30),
-            ElevatedButton(onPressed: (){
-              String? no = txtno.text;
-              int i = int.parse(no);
-              Model m1 = Model (a: i);
-              Navigator.pushNamed(context, 'final',arguments: m1);
-            }, child: Icon(Icons.navigate_next_outlined)),
-            Spacer(),
-          ],
-        ),
+          ),decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.pink,Colors.red,Colors.orange])),)
+
+        ],
       ),
     );
   }
 }
+
+
 class Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
